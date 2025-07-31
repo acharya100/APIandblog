@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block title %}Blog Posts{% endblock %}
+{% block content %}
+<h2 style="color: green;">Blog Posts</h2>
+<form method="post">
+    {% csrf_token %}
+    <p style="color: black;">Title: <input type="text" name="title"></p>
+    <p style="color: black;">Content: <textarea name="content"></textarea></p>
+    <p><input type="submit" value="Add Post"></p>
+</form>
+{% for post in blog_posts %}
+    <h3 style="color: green;">{{ post.title }}</h3>
+    <p style="color: black;">Date: {{ post.published_date }}</p>
+    <p style="color: black;">{{ post.content }}</p>
+{% empty %}
+    <p style="color: black;">No posts yet.</p>
+{% endfor %}
+{% endblock %}
